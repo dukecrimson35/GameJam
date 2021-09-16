@@ -50,3 +50,5 @@ Thumbs.db
 #python bytecode cache, for some plugins.
 *.pyc
 gamejam/Library/
+ProjectSettings/
+UserSettings/
