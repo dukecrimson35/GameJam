@@ -5,10 +5,11 @@ using UnityEngine;
 public class SharkSerch : MonoBehaviour
 {
     public GameObject Shark;
+    SharkMove sharkMove;
     // Start is called before the first frame update
     void Start()
     {
-        
+        sharkMove = Shark.GetComponent<SharkMove>();
     }
 
     // Update is called once per frame
@@ -21,7 +22,9 @@ public class SharkSerch : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             //ÉTÉÅÇí«Ç¢Ç©ÇØÉÇÅ[ÉhÇ…
-            Debug.Log("ss");
+            sharkMove.ChangeHuntmode();
+            sharkMove.GetHirame(other.gameObject);
+            sharkMove.GetHirameScript(other.gameObject);
         }
 
     }

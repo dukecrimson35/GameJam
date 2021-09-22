@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HirameMove : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class HirameMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -81,6 +82,20 @@ public class HirameMove : MonoBehaviour
             hideMater -= 0.01f;
         }
         #endregion
+
+        #region 死亡
+        if(hp <= 0)
+        {
+            //死亡
+        }
+        #endregion
+
+        #region クリア
+        if(GameObject.FindWithTag("Fish") == false)
+        {
+            SceneManager.LoadScene("EndingScene");
+        }
+        #endregion
     }
 
     private void OnTriggerEnter(Collider other)
@@ -88,7 +103,6 @@ public class HirameMove : MonoBehaviour
         Vector3 derection;//はじかれ先
         if (other.gameObject.tag == "Shark")//サメと当たった時
         {
-            Debug.Log("ga");
             derection = (transform.position - other.transform.position)*bounding;
             hp -= 1;//ダメージ
             transform.position = new Vector3(derection.x + transform.position.x, derection.y + transform.position.y, transform.position.z);//はじかれる
@@ -115,7 +129,7 @@ public class HirameMove : MonoBehaviour
     {
         FishMove fish = foodFish.GetComponent<FishMove>();
         fish.Damage(100);
-        Debug.Log("a");
+        //Debug.Log("a");
     }
 
     public void AteIt()//たべた！

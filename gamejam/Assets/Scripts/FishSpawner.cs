@@ -5,8 +5,9 @@ using UnityEngine;
 public class FishSpawner : MonoBehaviour
 {
     public GameObject Fish;//生み出すもの
+    public int spawnTime;//生成間隔
 
-    public int count;//タイマー
+    float count;//タイマー
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +18,8 @@ public class FishSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        count++;
-        if(count >= 60*5)
+        count += Time.deltaTime;
+        if(count >= spawnTime)
         {
             Instantiate(Fish);
             count = 0;
