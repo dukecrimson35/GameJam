@@ -6,6 +6,8 @@ public class HirameMove : MonoBehaviour
 {
     public float moveSpeed = 0.5f;//移動速度
     public float rotateSpeed = 0.5f;//旋回速度
+    public int hp;//体力
+    public float bounding;//はじかれ力
     bool atFlag;//攻撃可能フラグ
     GameObject foodFish;//攻撃対象
 
@@ -83,9 +85,13 @@ public class HirameMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Vector3 derection;//はじかれ先
         if (other.gameObject.tag == "Shark")//サメと当たった時
         {
-
+            Debug.Log("ga");
+            derection = (transform.position - other.transform.position)*bounding;
+            hp -= 1;//ダメージ
+            transform.position = new Vector3(derection.x + transform.position.x, derection.y + transform.position.y, transform.position.z);//はじかれる
         }
     }
     private void OnTriggerStay(Collider other)
