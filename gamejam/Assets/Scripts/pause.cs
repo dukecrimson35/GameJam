@@ -8,10 +8,16 @@ public class pause : MonoBehaviour
     //[SerializeField] private Button pauseButton;
     [SerializeField] private GameObject pausePanel;
     //[SerializeField] private Button resumeButton;
+    GameObject obj;
+    GameObject Menu;
 
     void Start()
     {
         pausePanel.SetActive(false);
+        //Menu = GameObject.Find("Menu");
+        //obj = (GameObject)Instantiate(pausePanel, this.transform.position, Quaternion.identity);
+        //obj.transform.parent = Menu.transform;
+        //obj.SetActive(false);
         //pauseButton.onClick.AddListener(Pause);
         //resumeButton.onClick.AddListener(Resume);
     }
