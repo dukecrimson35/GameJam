@@ -11,6 +11,7 @@ public class HirameMove : MonoBehaviour
     public float bounding;//‚Í‚¶‚©‚ê—Í
     bool atFlag;//UŒ‚‰Â”\ƒtƒ‰ƒO
     GameObject foodFish;//UŒ‚‘ÎÛ
+    public bool shiFlag = false;
 
     int fishcount;//H‚×‚½‚©‚¸
 
@@ -86,7 +87,7 @@ public class HirameMove : MonoBehaviour
         #region €–S
         if(hp <= 0)
         {
-            //€–S
+            shiFlag = true;//€–S
         }
         #endregion
 
