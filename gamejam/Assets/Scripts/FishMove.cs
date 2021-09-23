@@ -6,11 +6,14 @@ public class FishMove : MonoBehaviour
 {
     public float moveSpeed;
     public float rotateSpeed;
+    public float runSpeed;
     public int hp;//体力
-    int turnTime = 3;
+    int turnTime = 1;
     float timecount;
     bool rotateflag;
     int LR;//左右どちらに曲がるか
+    GameObject Hirame;
+
     enum Mode 
     { 
         idle,//動かない
@@ -19,10 +22,17 @@ public class FishMove : MonoBehaviour
     };
     Mode mode;
 
+    Vector3 hirameposLocal;
+    HirameMove hirameScript;
+
     // Start is called before the first frame update
     void Start()
     {
         mode = Mode.relax;
+        if (turnTime <= 1)
+        {
+            turnTime = Random.Range(2, 6);
+        }
     }
 
     // Update is called once per frame
@@ -43,7 +53,7 @@ public class FishMove : MonoBehaviour
                 timecount = 0;
                 rotateflag = true;
                 LR = Random.Range(1, 3);
-                Debug.Log(LR);
+                turnTime = Random.Range(2, 6);
             }
             if (rotateflag == true && LR == 1)
             {
@@ -66,7 +76,35 @@ public class FishMove : MonoBehaviour
         }
         if(mode == Mode.careful)//プレイヤーに気づいたとき
         {
-            //逃げるように移動
+            if (hirameScript.GetHideMater() < 0.9f)
+            {
+                //逃げるように移動
+                hirameposLocal = transform.InverseTransformPoint(Hirame.transform.position);//ヒラメの位置を相対座標で取得
+                                                                                            //ヒラメが右にいる場合
+                if (hirameposLocal.x > 0)
+                {
+                    //左旋回
+                    transform.Rotate(0, 0, 1 * rotateSpeed);
+                    transform.position += transform.up * 1f * Time.deltaTime * runSpeed;
+                }
+                //ヒラメが左にいる場合
+                if (hirameposLocal.x < 0)
+                {
+                    //右旋回
+                    transform.Rotate(0, 0, -1 * rotateSpeed);
+                    transform.position += transform.up * 1f * Time.deltaTime * runSpeed;
+                }
+                //ヒラメが正面
+                if (hirameposLocal.x == 0)
+                {
+                    //突進
+                    transform.position += transform.up * 1f * Time.deltaTime * runSpeed * 1.5f;
+                }
+            }
+            if(hirameScript.GetHideMater() >= 0.9f)
+            {
+                mode = Mode.relax;
+            }
         }
 
         #region 消滅処理
@@ -81,5 +119,28 @@ public class FishMove : MonoBehaviour
     public void Damage(int damage)//攻撃された
     {
         hp -= damage;
+    }
+
+    public void ChangeRunmode()
+    {
+        mode = Mode.careful;
+    }
+
+    public void ChangeRelaxmode()
+    {
+        mode = Mode.relax;
+    }
+
+    public void GetHirame(GameObject hirame)
+    {
+        Hirame = hirame;
+    }
+
+    public void GetHirameScript(GameObject hirame)
+    {
+        if(hirameScript == null)
+        {
+            hirameScript = hirame.GetComponent<HirameMove>();
+        }
     }
 }

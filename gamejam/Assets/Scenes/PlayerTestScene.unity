@@ -313,23 +313,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301641520}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &348961190 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1134053230441646284, guid: fc37f5ed0adbd704e9eb35fe36522aa6, type: 3}
-  m_PrefabInstance: {fileID: 1134053230093234538}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &348961196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348961190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6249533a058b304fb2fd538771ac4b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &446034142
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &729401161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,7 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Fish: {fileID: 2241365376798411101, guid: 79e28ac4a1aabb648b94e4dc4d588bbe, type: 3}
-  count: 0
+  spawnTime: 5
 --- !u!4 &729401162
 Transform:
   m_ObjectHideFlags: 0
@@ -1287,6 +1270,10 @@ PrefabInstance:
     - target: {fileID: 1134053230441646285, guid: fc37f5ed0adbd704e9eb35fe36522aa6, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538945632826045553, guid: fc37f5ed0adbd704e9eb35fe36522aa6, type: 3}
+      propertyPath: HuntSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8314975106104742865, guid: fc37f5ed0adbd704e9eb35fe36522aa6, type: 3}
       propertyPath: m_RootOrder
