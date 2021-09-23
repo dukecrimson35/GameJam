@@ -110,6 +110,7 @@ public class FishMove : MonoBehaviour
         #region Á–Åˆ—
         if(hp <= 0)
         {
+            hirameScript.AteIt();
             Destroy(this.gameObject);
             Destroy(this);
         }

@@ -13,15 +13,19 @@ public class HirameMove : MonoBehaviour
     GameObject foodFish;//攻撃対象
     public bool shiFlag = false;
 
-    int fishcount;//食べたかず
+    public int fishcount;//食べたかず
 
     public float hideMater;//隠れてる指数
     float time;
 
+    public AudioClip sound1;
+    public AudioClip sound2;
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -60,6 +64,7 @@ public class HirameMove : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Attack();
+                audioSource.PlayOneShot(sound1);
             }
         }
         #endregion
@@ -92,7 +97,8 @@ public class HirameMove : MonoBehaviour
         #endregion
 
         #region クリア
-        if(GameObject.FindWithTag("Fish") == false)
+        //if(GameObject.FindWithTag("Fish") == false)
+        if(fishcount >=5)
         {
             SceneManager.LoadScene("EndingScene");
         }
@@ -104,6 +110,7 @@ public class HirameMove : MonoBehaviour
         Vector3 derection;//はじかれ先
         if (other.gameObject.tag == "Shark")//サメと当たった時
         {
+            audioSource.PlayOneShot(sound2);
             derection = (transform.position - other.transform.position)*bounding;
             hp -= 1;//ダメージ
             transform.position = new Vector3(derection.x + transform.position.x, derection.y + transform.position.y, transform.position.z);//はじかれる

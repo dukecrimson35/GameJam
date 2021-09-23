@@ -25,17 +25,23 @@ public class Hirame_Dead : MonoBehaviour
             Deadend();
         }
         //Deadend();
-        if(haiboku_gazou == true)
-        {
-            if(Input.GetKey(KeyCode.Space))
-            {
-                SceneManager.LoadScene("TitleScene");
-            }
-        }
+        //if(haiboku_gazou == true)
+        //{
+        //    if(Input.GetKey(KeyCode.Space))
+        //    {
+        //        SceneManager.LoadScene("TitleScene");
+        //    }
+        //}
     }
     private void Deadend()
     {
         Time.timeScale = 0;  // ŽžŠÔ’âŽ~
         haiboku_gazou.SetActive(true);
+        Debug.Log("AAA");
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene("TitleScene");
+        }
     }
 }
